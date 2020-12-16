@@ -54,6 +54,13 @@ void navigateTo(context, widget) => Navigator.push(
       ),
     );
 
+void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
+    context,
+    MaterialPageRoute(
+      builder: (context) => widget,
+    ),
+    (Route<dynamic> route) => false);
+
 class DefaultTextForm extends StatelessWidget {
   final TextEditingController controller;
   final String title;
@@ -104,3 +111,18 @@ class Logo extends StatelessWidget {
     );
   }
 }
+
+void buildProgress({context, text}) => showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: Row(
+          children: <Widget>[
+            CircularProgressIndicator(),
+            SizedBox(
+              width: 20,
+            ),
+            Text(text),
+          ],
+        ),
+      ),
+    );
