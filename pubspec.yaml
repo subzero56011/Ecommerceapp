@@ -26,6 +26,12 @@ dependencies:
   flutter_bloc: ^6.1.1
   bloc: ^6.1.1
   dio: ^3.0.10
+  fluttertoast: ^7.1.6
+  shared_preferences: ^0.5.12+4
+  outline_material_icons: ^0.1.1
+  flutter_rating_bar: ^3.2.0+1
+  expansion_card: ^0.1.0
+
 
 
   # The following adds the Cupertino Icons font to your application.

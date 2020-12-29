@@ -1,21 +1,37 @@
+import 'package:ecommerce_app/layout/cubit/cubit.dart';
+import 'package:ecommerce_app/layout/home.dart';
 import 'package:ecommerce_app/modules/login/cubit/cubit.dart';
-import 'package:ecommerce_app/modules/plus.dart';
 import 'package:ecommerce_app/modules/register/cubit/cubit.dart';
 import 'package:ecommerce_app/modules/welcome/welcome_screen.dart';
-import 'package:ecommerce_app/shared/network/remote/dio_helper.dart';
+import 'package:ecommerce_app/shared/components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'shared/colors/color_common.dart';
-import 'modules/plus.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  var widget;
+
+  await initPref().then((value) {
+    //ma haza value
+    if (getToken() != null && getToken().length > 0)
+      widget = HomeScreen();
+    else
+      widget = WelcomeScreen();
+  });
+
+  runApp(MyApp(widget));
 }
 
 class MyApp extends StatelessWidget {
+  final widget;
+  MyApp(this.widget);
+
   @override
   Widget build(BuildContext context) {
-    DioHelper();
+    initApp();
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -23,6 +39,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => LoginCubit(),
+        ),
+        BlocProvider(
+          create: (context) => HomeCubit(),
         ),
       ],
       child: MaterialApp(
@@ -33,7 +52,7 @@ class MyApp extends StatelessWidget {
           appBarTheme: AppBarTheme(color: kDefaultColor),
           scaffoldBackgroundColor: Colors.grey[200],
         ),
-        home: WelcomeScreen(),
+        home: widget,
       ),
     );
   }

@@ -1,7 +1,6 @@
 import 'package:ecommerce_app/modules/login/login_screen.dart';
 import 'package:ecommerce_app/modules/register/register_screen.dart';
 import 'package:ecommerce_app/shared/components/components.dart';
-import 'package:ecommerce_app/shared/network/remote/dio_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/shared/colors/color_common.dart';
