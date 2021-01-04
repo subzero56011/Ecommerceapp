@@ -31,6 +31,7 @@ dependencies:
   outline_material_icons: ^0.1.1
   flutter_rating_bar: ^3.2.0+1
   expansion_card: ^0.1.0
+  expansion_tile_card: ^1.1.0
 
 
 

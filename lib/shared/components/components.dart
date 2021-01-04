@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:expansion_tile_card/expansion_tile_card.dart';
 
 SharedPreferences preferences;
 
@@ -284,61 +285,66 @@ Widget buildCourseItem() => Padding(
           ],
         ),
         padding: EdgeInsets.all(10),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              radius: 25,
-            ),
-            SizedBox(
-              width: 15,
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          'Web Design',
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: black16Bold(),
-                        ),
-                      ),
-                      RatingBar.builder(
-                        initialRating: 5,
-                        minRating: 1,
-                        direction: Axis.horizontal,
-                        allowHalfRating: true,
-                        itemCount: 5,
-                        itemSize: 18,
-                        ignoreGestures: true,
-                        itemPadding: EdgeInsets.zero,
-                        itemBuilder: (context, _) => Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                        ),
-                        onRatingUpdate: (rating) {
-                          print(rating);
-                        },
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    'Web DesignWeb DesignWeb DesignWeb Design',
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: grey14(),
-                  )
-                ],
+        child: ExpansionTileCard(
+          baseColor: Colors.white,
+          expandedColor: Colors.white,
+          elevation: 0.0,
+          title: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                radius: 25,
               ),
-            ),
-          ],
+              SizedBox(
+                width: 15,
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Web Design',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: black16Bold(),
+                          ),
+                        ),
+                        RatingBar.builder(
+                          initialRating: 5,
+                          minRating: 1,
+                          direction: Axis.horizontal,
+                          allowHalfRating: true,
+                          itemCount: 5,
+                          itemSize: 18,
+                          ignoreGestures: true,
+                          itemPadding: EdgeInsets.zero,
+                          itemBuilder: (context, _) => Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                          ),
+                          onRatingUpdate: (rating) {
+                            print(rating);
+                          },
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      'Web DesignWeb DesignWeb DesignWeb Design',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: grey14(),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
