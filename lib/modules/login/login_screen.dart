@@ -3,6 +3,7 @@ import 'package:ecommerce_app/layout/home.dart';
 import 'package:ecommerce_app/modules/login/cubit/cubit.dart';
 import 'package:ecommerce_app/modules/login/cubit/states.dart';
 import 'package:ecommerce_app/modules/register/register_screen.dart';
+import 'package:ecommerce_app/shared/network/local/shared_prefrences.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:ecommerce_app/shared/components/components.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class LoginScreen extends StatelessWidget {
       passwordController.text = password;
     }
     return BlocProvider(
-      create: (BuildContext context) => LoginCubit(),
+      create: (context) => LoginCubit(),
       child: BlocConsumer<LoginCubit, LoginStates>(
         listener: (context, state) {
           if (state is LoginStateLoading) {

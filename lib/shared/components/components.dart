@@ -7,21 +7,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:expansion_tile_card/expansion_tile_card.dart';
 
-SharedPreferences preferences;
-
 void initApp() {
   DioHelper();
 }
-
-Future<void> initPref() async {
-  preferences = await SharedPreferences.getInstance();
-}
-
-Future<bool> saveToken(String token) => preferences.setString('token', token);
-
-String getToken() => preferences.getString('token');
-
-Future<bool> removeToken() => preferences.remove('token');
 
 class Button extends StatelessWidget {
   final String text;
@@ -269,7 +257,7 @@ class BuildProfileItem extends StatelessWidget {
   }
 }
 
-Widget buildCourseItem() => Padding(
+Widget buildCourseItem(course) => Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Container(
         decoration: BoxDecoration(
@@ -292,8 +280,16 @@ Widget buildCourseItem() => Padding(
           title: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CircleAvatar(
-                radius: 25,
+              Container(
+                width: 60,
+                height: 60,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: kDefaultColor,
+                    image: DecorationImage(
+                        image: NetworkImage(
+                      course['image'],
+                    ))),
               ),
               SizedBox(
                 width: 15,
@@ -306,36 +302,36 @@ Widget buildCourseItem() => Padding(
                       children: [
                         Expanded(
                           child: Text(
-                            'Web Design',
+                            '${course['title']}',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: black16Bold(),
                           ),
                         ),
-                        RatingBar.builder(
-                          initialRating: 5,
-                          minRating: 1,
-                          direction: Axis.horizontal,
-                          allowHalfRating: true,
-                          itemCount: 5,
-                          itemSize: 18,
-                          ignoreGestures: true,
-                          itemPadding: EdgeInsets.zero,
-                          itemBuilder: (context, _) => Icon(
-                            Icons.star,
-                            color: Colors.amber,
-                          ),
-                          onRatingUpdate: (rating) {
-                            print(rating);
-                          },
-                        ),
+                        // RatingBar.builder(
+                        //   initialRating: 5,
+                        //   minRating: 1,
+                        //   direction: Axis.horizontal,
+                        //   allowHalfRating: true,
+                        //   itemCount: 5,
+                        //   itemSize: 18,
+                        //   ignoreGestures: true,
+                        //   itemPadding: EdgeInsets.zero,
+                        //   itemBuilder: (context, _) => Icon(
+                        //     Icons.star,
+                        //     color: Colors.amber,
+                        //   ),
+                        //   onRatingUpdate: (rating) {
+                        //     print(rating);
+                        //   },
+                        // ),
                       ],
                     ),
                     SizedBox(
                       height: 5,
                     ),
                     Text(
-                      'Web DesignWeb DesignWeb DesignWeb Design',
+                      '${course['description']}',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: grey14(),

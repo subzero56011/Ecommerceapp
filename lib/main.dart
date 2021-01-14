@@ -4,6 +4,7 @@ import 'package:ecommerce_app/modules/login/cubit/cubit.dart';
 import 'package:ecommerce_app/modules/register/cubit/cubit.dart';
 import 'package:ecommerce_app/modules/welcome/welcome_screen.dart';
 import 'package:ecommerce_app/shared/components/components.dart';
+import 'package:ecommerce_app/shared/network/local/shared_prefrences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'shared/colors/color_common.dart';
@@ -14,7 +15,6 @@ void main() async {
   var widget;
 
   await initPref().then((value) {
-    //ma haza value
     if (getToken() != null && getToken().length > 0)
       widget = HomeScreen();
     else
