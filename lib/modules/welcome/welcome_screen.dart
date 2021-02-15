@@ -54,7 +54,7 @@ class WelcomeScreen extends StatelessWidget {
               onPressed: () {
                 navigateTo(context, RegisterScreen());
 
-                //test firebase notification through api
+                //test firebase notification through apis
                 // DioHelper.postData(
                 //   path: 'lms/api/v1/auth/signup-save',
                 //   data: {
