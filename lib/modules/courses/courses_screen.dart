@@ -1,6 +1,7 @@
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:ecommerce_app/modules/courses/cubit/cubit.dart';
 import 'package:ecommerce_app/modules/courses/cubit/states.dart';
+import 'package:ecommerce_app/shared/colors/color_common.dart';
 import 'package:ecommerce_app/shared/components/components.dart';
 import 'package:ecommerce_app/shared/styles/styles.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +44,7 @@ class CoursesScreen extends StatelessWidget {
                     ),
                     Expanded(
                       child: ListView.separated(
-                        padding: EdgeInsets.only(top: 20),
+                        padding: EdgeInsets.only(top: 20, bottom: 20),
                         physics: BouncingScrollPhysics(),
                         itemBuilder: (context, index) =>
                             buildCourseItem(courses[index]),
@@ -52,6 +53,51 @@ class CoursesScreen extends StatelessWidget {
                         ),
                         itemCount: courses.length,
                       ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(),
+                        if (state is! CoursesStateLoadingMore &&
+                            state is! CoursesStateLoading &&
+                            CoursesCubit.get(context).currentPages <=
+                                CoursesCubit.get(context).totalPages)
+                          MaterialButton(
+                            height: 40,
+                            color: kDefaultColor,
+                            onPressed: () {
+                              if (CoursesCubit.get(context).currentPages <=
+                                  CoursesCubit.get(context).totalPages)
+                                CoursesCubit.get(context).getMoreCourses();
+                            },
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  'Load More',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Icon(
+                                  Icons.arrow_downward,
+                                  color: Colors.white,
+                                ),
+                              ],
+                            ),
+                          ),
+                        if (state is CoursesStateLoadingMore)
+                          CircularProgressIndicator()
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20,
                     ),
                   ],
                 ),

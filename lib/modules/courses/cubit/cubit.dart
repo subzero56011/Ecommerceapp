@@ -11,17 +11,45 @@ class CoursesCubit extends Cubit<CoursesStates> {
 
   List courses = [];
 
+  int totalPages = 0;
+  int currentPages = 1;
+
   getCourses() {
     emit(CoursesStateLoading());
 
     DioHelper.postData(
       path: 'lms/api/v1/courses',
+      query: {
+        'page': currentPages,
+      },
       token: getToken(),
     ).then((value) {
       emit(CoursesStateSuccess());
       // print(value.data.toString());
 
       courses = value.data['result']['data'] as List;
+      currentPages++;
+      totalPages = value.data['result']['last_page'];
+    }).catchError((error) {
+      emit(CoursesStateError(error));
+    });
+  }
+
+  getMoreCourses() {
+    emit(CoursesStateLoadingMore());
+
+    DioHelper.postData(
+      path: 'lms/api/v1/courses',
+      query: {
+        'page': currentPages,
+      },
+      token: getToken(),
+    ).then((value) {
+      emit(CoursesStateSuccess());
+      // print(value.data.toString());
+
+      courses.addAll(value.data['result']['data'] as List);
+      currentPages++;
     }).catchError((error) {
       emit(CoursesStateError(error));
     });

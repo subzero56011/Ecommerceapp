@@ -3,6 +3,7 @@ import 'package:ecommerce_app/shared/network/local/shared_prefrences.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:ecommerce_app/shared/components/components.dart';
 import 'package:flutter/material.dart';
+import 'package:ecommerce_app/modules/phone/phone_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   @override
@@ -16,6 +17,15 @@ class SettingsScreen extends StatelessWidget {
         BuildSettingItem(
           title: 'Push Notification',
           function: () {},
+        ),
+        BuildSettingItem(
+          title: 'Phone Authuntication',
+          function: () {
+            navigateTo(
+              context,
+              PhoneScreen(),
+            );
+          },
         ),
         BuildSettingItem(
           title: 'About Us',

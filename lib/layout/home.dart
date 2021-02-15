@@ -26,7 +26,12 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
             actions: [
-              IconButton(icon: Icon(Icons.notifications), onPressed: () {})
+              IconButton(
+                icon: Icon(Icons.notifications),
+                onPressed: () {
+                  HomeCubit.get(context).sendNotification();
+                },
+              ),
             ],
           ),
           body: HomeCubit.get(context).widget[currentIndex],

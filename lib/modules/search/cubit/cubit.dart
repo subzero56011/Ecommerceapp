@@ -10,26 +10,54 @@ class SearchCubit extends Cubit<SearchStates> {
   static SearchCubit get(context) => BlocProvider.of(context);
 
   List search = [];
-
+  int totalPages = 0;
+  int currentPage = 2;
   getSearch({name}) {
     emit(SearchStateLoading());
 
     DioHelper.postData(
       path: 'lms/api/v1/search',
-      token: getToken(),
       data: {
-        'q': '$name',
-        'type': '1',
+        'q': name,
+        'type': 1,
       },
+      query: {
+        'page': 1,
+      },
+      token: getToken(),
     ).then((value) {
       emit(SearchStateSuccess());
-      // print(value.data.toString());
+      print(value.data.toString());
 
       search = value.data['result']['data'] as List;
-      print(search);
-      // print(search);
+
+      //currentPage ++;
+      totalPages = value.data['result']['last_page'];
     }).catchError((error) {
       emit(SearchStateError(error));
+      print(error.toString());
+    });
+  }
+
+  getMoreSearch() {
+    emit(SearchStateLoadingMore());
+
+    DioHelper.postData(
+      path: 'lms/api/v1/courses',
+      query: {
+        'page': currentPage,
+      },
+      token: getToken(),
+    ).then((value) {
+      emit(SearchStateSuccess());
+      print(value.data.toString());
+
+      search.addAll(value.data['result']['data'] as List);
+
+      currentPage++;
+    }).catchError((error) {
+      emit(SearchStateError(error));
+      print(error.toString());
     });
   }
 }
