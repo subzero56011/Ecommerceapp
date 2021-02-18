@@ -26,7 +26,7 @@ class Button extends StatelessWidget {
         color: kDefaultColor,
       ),
       width: double.infinity,
-      height: 40,
+      height: 45,
       child: FlatButton(
         onPressed: onPressed,
         child: Text(
@@ -47,7 +47,9 @@ Widget headText(String text) => Text(
 
 Widget captionText(String text) => Text(
       text,
-      style: TextStyle(fontSize: 16),
+      style: TextStyle(
+        fontSize: 16,
+      ),
     );
 
 Widget detailsText(String text) => Text(
@@ -113,10 +115,12 @@ class Logo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200,
-      height: 200,
+      width: 300,
+      height: 150,
       child: Image(
-        image: AssetImage('assets/images/Untitled-1.png'),
+        image: AssetImage(
+          'assets/images/Learnit-logo-mediumred.png',
+        ),
       ),
     );
   }

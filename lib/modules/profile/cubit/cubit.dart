@@ -22,8 +22,10 @@ class ProfileCubit extends Cubit<ProfileStates> {
       emit(ProfileStateSuccess());
 
       p = Profile(
-          name: value.data['result']['full_name'],
-          email: value.data['result']['email']);
+        name: value.data['result']['full_name'],
+        email: value.data['result']['email'],
+        city: value.data['result']['city'],
+      );
     }).catchError((error) {
       emit(ProfileStateError(error));
       print(error);

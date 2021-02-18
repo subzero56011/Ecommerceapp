@@ -36,7 +36,7 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         CircleAvatar(
                           radius: 50,
-                          backgroundImage: AssetImage('assets/images/user.png'),
+                          backgroundImage: AssetImage('assets/images/IMG2.jpg'),
                         ),
                         SizedBox(
                           height: 20,
@@ -60,6 +60,13 @@ class ProfileScreen extends StatelessWidget {
 
                         Text(
                           abdo.email,
+                          style: black18Bold(),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          abdo.city,
                           style: black18Bold(),
                         ),
                         SizedBox(

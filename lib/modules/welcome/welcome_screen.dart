@@ -20,33 +20,30 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: Padding(
         padding: EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            headText('Welcome To courses'),
-            SizedBox(
-              height: 30,
-            ),
+            // headText('Learn It!'),
+
             Logo(),
             SizedBox(
-              height: 50,
+              height: 125,
             ),
             Button(
               text: 'login',
               borderRadius: 8,
               onPressed: () {
-                // navigateTo(
-                //   context,
-                //   LoginScreen(),
-                // );
-                HomeCubit.get(context).sendNotification();
+                navigateTo(
+                  context,
+                  LoginScreen(),
+                );
+                // HomeCubit.get(context).sendNotification();
               },
             ),
             SizedBox(
-              height: 20,
+              height: 25,
             ),
             Button(
               text: 'register',
@@ -70,17 +67,17 @@ class WelcomeScreen extends StatelessWidget {
               },
             ),
             SizedBox(
-              height: 20,
+              height: 75,
             ),
             captionText('Or login With'),
             SizedBox(
-              height: 10,
+              height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 CircleAvatar(
-                  radius: 20,
+                  radius: 25,
                   backgroundColor: kDefaultColor,
                   child: Image(
                     image: AssetImage(
@@ -92,14 +89,14 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: 15,
+                  width: 20,
                 ),
                 GestureDetector(
                   onTap: () {
                     handleSignIn();
                   },
                   child: CircleAvatar(
-                    radius: 20,
+                    radius: 25,
                     backgroundColor: kDefaultColor,
                     child: Image(
                       image: AssetImage(
@@ -112,14 +109,14 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: 15,
+                  width: 20,
                 ),
                 GestureDetector(
                   onTap: () {
                     navigateTo(context, PhoneScreen());
                   },
                   child: CircleAvatar(
-                    radius: 20,
+                    radius: 25,
                     backgroundColor: kDefaultColor,
                     child: Image(
                       image: AssetImage(

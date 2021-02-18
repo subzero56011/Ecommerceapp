@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
           appBarTheme: AppBarTheme(color: kDefaultColor),
-          scaffoldBackgroundColor: Colors.grey[200],
+          scaffoldBackgroundColor: Colors.grey[100],
         ),
         home: widget,
       ),

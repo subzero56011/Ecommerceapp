@@ -56,19 +56,25 @@ class LoginScreen extends StatelessWidget {
         },
         builder: (context, state) {
           return Scaffold(
-            appBar: AppBar(),
+            appBar: AppBar(
+              centerTitle: true,
+              title: Text('Log In'),
+            ),
             body: SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.all(20),
                 child: Column(
                   children: <Widget>[
+                    SizedBox(
+                      height: 40,
+                    ),
                     SingleChildScrollView(
                       child: Logo(),
                     ),
                     Column(
                       children: <Widget>[
                         SizedBox(
-                          height: 30,
+                          height: 40,
                         ),
                         DefaultTextForm(
                             title: 'Email',
@@ -85,7 +91,7 @@ class LoginScreen extends StatelessWidget {
                           controller: passwordController,
                         ),
                         SizedBox(
-                          height: 30,
+                          height: 50,
                         ),
                         Button(
                           text: 'login',
@@ -119,7 +125,7 @@ class LoginScreen extends StatelessWidget {
                           },
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 40,
                         ),
                         InkWell(
                           onTap: () {

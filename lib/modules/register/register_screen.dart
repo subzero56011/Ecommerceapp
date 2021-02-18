@@ -41,22 +41,25 @@ class RegisterScreen extends StatelessWidget {
         Navigator.pop(context);
         buildProgress(
           context: context,
-          text: 'this email is already used',
+          text: 'internet connection error',
           error: true,
         );
       }
     }, builder: (context, state) {
       return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text('Sign Up'),
+        ),
         body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.all(20.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                headText('Sign up'),
+                // headText('Sign up'),
                 SizedBox(
-                  height: 20.0,
+                  height: 30.0,
                 ),
                 DefaultTextForm(
                   title: 'First name',
@@ -101,7 +104,7 @@ class RegisterScreen extends StatelessWidget {
                   controller: cityController,
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 60,
                 ),
                 Button(
                   text: 'Register',
